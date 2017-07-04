@@ -79,6 +79,30 @@ export const checkUsername = (username)=> {
   };
 };
 
+export const submitAnnotation = (annotation)=> {
+  return (dispatch)=> {
+    return axios.post(endpoints.submitAnnotation, annotation)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        if (error.response) throw error.response;
+      });
+  };
+};
+
+export const loadImage = (userId) => {
+  return dispatch => {
+    return axios.get(endpoints.loadImage, userId)
+      .then(response => {
+        console.log(response.data);
+      })
+        .catch(error => {
+          if (error.response) throw error.response;
+        });
+  };
+};
+
 //end thunks
 
 export const removeUser = ()=> {

@@ -16,3 +16,7 @@ export const checkUsername = '/check_username';
 export const signup = '/signup';
 
 export const logout = '/logout';
+
+export const submitAnnotation = '/image/submit-annotation';
+
+export const loadImage = '/image/load-image';

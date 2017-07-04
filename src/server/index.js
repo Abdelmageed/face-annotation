@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 import config from '../../configs/main';
 import app from './app';
+import setImages from './models/SetImages';
 
 const dev = (process.env.NODE_ENV !== 'production');
 let server;
@@ -41,5 +42,6 @@ if(!mongoose.connection.db)
   mongoose.connect(config.DATA_URL);
 console.log(`connected to db at ${config.DATA_URL}`);
 
+setImages();
 
 export default server;

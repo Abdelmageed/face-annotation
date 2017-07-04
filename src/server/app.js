@@ -8,6 +8,7 @@ import cors from 'cors';
 import path from 'path';
 //import poll from './routers/poll';
 import user from './routers/user';
+import image from './routers/image';
 
 const app = express();
 
@@ -35,6 +36,6 @@ app.get('/', (req, res)=> {
   res.sendFile(path.resolve('dist/index.html'));
 });
 app.use('/api', user);
-//app.use('/poll', poll);
+app.use('/api/image', image);
 
 export default app;

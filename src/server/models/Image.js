@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
     url: String,
-    userId: String,
-    annotations: [Object]
+    annotations: [{
+        userId: String,
+        annotation: [{
+            x: Number,
+            y: Number
+        }]
+    }]
 });
 
 export default mongoose.model('Image', ImageSchema);
