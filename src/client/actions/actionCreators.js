@@ -95,8 +95,8 @@ export const loadImage = (userId) => {
   return dispatch => {
     return axios.get(endpoints.loadImage, userId)
       .then(response => {
-        console.log(response.data);
         dispatch(setImage(response.data));
+        dispatch(clearAnnotations());
       })
         .catch(error => {
           if (error.response) throw error.response;
@@ -166,3 +166,7 @@ export const setImage = (url) => {
     url
   };
 };
+
+export const clearAnnotations = () => ({
+  type: actions.CLEAR_ANNOTATIONS
+});

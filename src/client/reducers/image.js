@@ -16,7 +16,9 @@ export function image(state = initialState.image, action) {
             return Object.assign({}, state, {annotations: newAnnotations});
         }
 
-        
+        case actions.CLEAR_ANNOTATIONS: {
+            return Object.assign({}, state, {annotations: []});
+        }
         
         default:
             return state;

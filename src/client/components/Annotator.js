@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import Marker from './Marker';
+
 export default class Annotator extends Component {
     constructor(props) {
         super(props);
@@ -26,10 +28,15 @@ export default class Annotator extends Component {
     render() {
 
         const contStyle = {
-            position: 'absolute'
+            position: 'relative'
         };
 
-
+        const markers = this.props.annotations.map((annotation, index) => {
+            return (
+                <Marker key={index} number={index + 1} top={annotation.y} left={annotation.x} />
+            );
+        });
+        
         return (
             <div>
                 <div
@@ -37,8 +44,12 @@ export default class Annotator extends Component {
                     onClick={this.addAnnotation}
                     ref={(ref) => {this.cont = ref;}}>
                     <img src={this.props.url} alt="Face Image"/>
+                    {markers}
                 </div>
-                <button onClick={this.loadImage}>Next</button>
+                <br />
+                <div>
+                    <button onClick={this.loadImage}>Next</button>
+                </div>
             </div>
         );
     }
