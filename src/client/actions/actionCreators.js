@@ -96,6 +96,7 @@ export const loadImage = (userId) => {
     return axios.get(endpoints.loadImage, userId)
       .then(response => {
         console.log(response.data);
+        dispatch(setImage(response.data));
       })
         .catch(error => {
           if (error.response) throw error.response;
@@ -142,5 +143,26 @@ export const loginFailure = (error)=> {
   return {
     type: 'LOGIN_FAILURE',
     error
+  };
+};
+
+
+export const addAnnotation = (annotation) => {
+  return {
+    type: actions.ADD_ANNOTATION,
+    annotation
+  };
+};
+
+export const removeAnnnotation = () => {
+  return {
+    type: actions.REMOVE_ANNOTATION
+  };
+};
+
+export const setImage = (url) => {
+  return {
+    type: actions.SET_IMAGE,
+    url
   };
 };

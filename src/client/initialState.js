@@ -10,5 +10,9 @@ export const initialState = {
     },
     username: '',
     id: ''
+  },
+  image: {
+    url: '',
+    annotations: []
   }
 };
