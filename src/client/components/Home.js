@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
+import Annotator from '../containers/Annotator';
+
 export default class Home extends Component {
   
   constructor(props){
@@ -8,7 +10,10 @@ export default class Home extends Component {
   
   render(){
     return (
-      <h3>Hello {this.props.username}</h3>
-    )
+      <div>
+        <h3>Hello {this.props.username}</h3>
+        <Annotator />
+      </div>
+    );
   }
 }
