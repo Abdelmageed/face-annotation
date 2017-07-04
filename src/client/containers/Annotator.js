@@ -9,15 +9,13 @@ const mapStateToProps = (state) => ({
     userId: state.user.id
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
     submitAnnotation: (annotation) => {
-        dispatch(actions.submitAnnotation({
-            userId: ownProps.userId,
-            annotation
-        }));
+        console.log(annotation);
+        dispatch(actions.submitAnnotation(annotation));
     },
-    loadImage: () => {
-        dispatch(actions.loadImage(ownProps.userId));
+    loadImage: (userId) => {
+        dispatch(actions.loadImage(userId));
     },
     addAnnotation: (annotation) => {
         dispatch(actions.addAnnotation(annotation));

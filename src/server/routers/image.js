@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/submit-annotation', (req, res) => {
     const data = req.body;
+    console.log(data);
     Image.findOneAndUpdate({url: data.imageUrl}, {$push: {annotations: {userId: data.userId, annotation: data.annotation}}}, {new: true}, (err, image) => {
         if (err) {throw err;}
         res.send(image);

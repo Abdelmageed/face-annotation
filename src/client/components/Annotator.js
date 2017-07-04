@@ -7,21 +7,34 @@ export default class Annotator extends Component {
         super(props);
 
         this.cont = null;
+        this.annotationCount = 8;
 
-        this.loadImage = this.loadImage.bind(this);
         this.addAnnotation = this.addAnnotation.bind(this);
-        this.loadImage();
+        this.annotationsComplete = this.annotationsComplete.bind(this);
+        this.submit = this.submit.bind(this);
+        this.props.loadImage(this.props.userId);
     }
 
-    loadImage() {
-        this.props.loadImage();
+
+    submit() {
+        const annotation = {
+            userId: this.props.userId,
+            annotation: this.props.annotations,
+            imageUrl: this.props.url
+        };
+        this.props.submitAnnotation(annotation);
+        this.props.loadImage(this.props.userId);
+    }
+
+    annotationsComplete() {
+        return (this.props.annotations.length === this.annotationCount);
     }
 
     addAnnotation (e) {
+        if (this.annotationsComplete()) {return;}
         let x = e.pageX - this.cont.offsetLeft,
             y = e.pageY - this.cont.offsetTop,
             annotation = {x, y};
-            console.log(annotation);
         this.props.addAnnotation(annotation);
     }
 
@@ -48,7 +61,9 @@ export default class Annotator extends Component {
                 </div>
                 <br />
                 <div>
-                    <button onClick={this.loadImage}>Next</button>
+                    <button
+                        disabled={!this.annotationsComplete()}
+                        onClick={this.submit}>Next</button>
                 </div>
             </div>
         );
